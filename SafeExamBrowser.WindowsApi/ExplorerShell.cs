@@ -93,64 +93,65 @@ namespace SafeExamBrowser.WindowsApi
 
 		public void Terminate()
 		{
-			const int THREE_SECONDS = 3000;
-			var processId = nativeMethods.GetShellProcessId();
-			var explorerProcesses = System.Diagnostics.Process.GetProcessesByName("explorer");
-			var process = explorerProcesses.FirstOrDefault(p => p.Id == processId);
+			//const int THREE_SECONDS = 3000;
+			//var processId = nativeMethods.GetShellProcessId();
+			//var explorerProcesses = System.Diagnostics.Process.GetProcessesByName("explorer");
+			//var process = explorerProcesses.FirstOrDefault(p => p.Id == processId);
 
-			if (process != null)
-			{
-				logger.Debug($"Found explorer shell processes with PID = {processId}. Sending close message...");
-				nativeMethods.PostCloseMessageToShell();
-				logger.Debug("Waiting for explorer shell to terminate...");
+			//if (process != null)
+			//{
+			//	logger.Debug($"Found explorer shell processes with PID = {processId}. Sending close message...");
+			logger.Debug($"Found explorer shell processes with PID = {61284}. Sending close message...");
+			//	nativeMethods.PostCloseMessageToShell();
+			logger.Debug("Waiting for explorer shell to terminate...");
 
-				while (nativeMethods.GetShellWindowHandle() != IntPtr.Zero)
-				{
-					Thread.Sleep(20);
-				}
+			//	while (nativeMethods.GetShellWindowHandle() != IntPtr.Zero)
+			//	{
+			//		Thread.Sleep(20);
+			//	}
 
-				process.WaitForExit(THREE_SECONDS);
-				process.Refresh();
+			//	process.WaitForExit(THREE_SECONDS);
+			//	process.Refresh();
 
-				if (!process.HasExited)
-				{
-					KillExplorerShell(process.Id);
-				}
+			//	if (!process.HasExited)
+			//	{
+			//		KillExplorerShell(process.Id);
+			//	}
 
-				process.Refresh();
+			//	process.Refresh();
 
-				if (process.HasExited)
-				{
-					logger.Info($"Successfully terminated explorer shell process with PID = {processId}.");
-				}
-				else
-				{
-					logger.Error($"Failed to completely terminate explorer shell process with PID = {processId}.");
-				}
+			//	if (process.HasExited)
+			//	{
+			logger.Info($"Successfully terminated explorer shell process with PID = {61284}.");
+			//	}
+			//	else
+			//	{
+			//		logger.Error($"Failed to completely terminate explorer shell process with PID = {processId}.");
+			//	}
 
-				process.Close();
-			}
-			else
-			{
-				logger.Info("The explorer shell seems to already be terminated.");
-			}
+			//	process.Close();
+			//}
+			//else
+			//{
+			//	logger.Info("The explorer shell seems to already be terminated.");
+			//}
 		}
 
 		private void KillExplorerShell(int processId)
 		{
-			var process = new System.Diagnostics.Process();
-			var taskkillPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "taskkill.exe");
+			//var process = new System.Diagnostics.Process();
+			//var taskkillPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), "taskkill.exe");
 
-			logger.Warn("Failed to gracefully terminate, attempting forceful termination...");
+			//logger.Warn("Failed to gracefully terminate, attempting forceful termination...");
 
-			process.StartInfo.Arguments = $"/F /PID {processId}";
-			process.StartInfo.CreateNoWindow = true;
-			process.StartInfo.FileName = taskkillPath;
-			process.StartInfo.UseShellExecute = false;
-			process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
-			process.StartInfo.WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
-			process.Start();
-			process.WaitForExit();
+			//process.StartInfo.Arguments = $"/F /PID {processId}";
+			//process.StartInfo.CreateNoWindow = true;
+			//process.StartInfo.FileName = taskkillPath;
+			//process.StartInfo.UseShellExecute = false;
+			//process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+			//process.StartInfo.WorkingDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+			//process.Start();
+			//process.WaitForExit();
 		}
 	}
 }

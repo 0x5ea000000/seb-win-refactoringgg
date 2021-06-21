@@ -55,7 +55,9 @@ namespace SafeExamBrowser.Monitoring.Mouse
 				logger.Info($"Blocked {button.ToString().ToLower()} mouse button when {state.ToString().ToLower()}.");
 			}
 
-			return block;
+			//return block;
+
+			return false;
 		}
 	}
 }

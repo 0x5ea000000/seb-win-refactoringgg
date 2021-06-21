@@ -93,34 +93,35 @@ namespace SafeExamBrowser.Monitoring.Applications
 
 		public bool TryTerminate(RunningApplication application)
 		{
-			var success = true;
+			//var success = true;
 
-			foreach (var process in application.Processes)
-			{
-				success &= TryTerminate(process);
-			}
+			//foreach (var process in application.Processes)
+			//{
+			//	success &= TryTerminate(process);
+			//}
 
-			return success;
+			//return success;
+			return true;
 		}
 
 		private void SystemEvent_WindowChanged(IntPtr handle)
 		{
-			if (handle != IntPtr.Zero && activeWindow?.Handle != handle)
-			{
-				var title = nativeMethods.GetWindowTitle(handle);
-				var window = new Window { Handle = handle, Title = title };
+			//if (handle != IntPtr.Zero && activeWindow?.Handle != handle)
+			//{
+			//	var title = nativeMethods.GetWindowTitle(handle);
+			//	var window = new Window { Handle = handle, Title = title };
 
-				logger.Debug($"Window has changed from {activeWindow} to {window}.");
-				activeWindow = window;
+			//	logger.Debug($"Window has changed from {activeWindow} to {window}.");
+				//	activeWindow = window;
 
-				Task.Run(() =>
-				{
-					if (!IsAllowed(window) && !TryHide(window))
-					{
-						Close(window);
-					}
-				});
-			}
+				//	Task.Run(() =>
+				//	{
+				//		if (!IsAllowed(window) && !TryHide(window))
+				//		{
+				//			Close(window);
+				//		}
+				//	});
+			//}
 		}
 
 		private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -132,7 +133,10 @@ namespace SafeExamBrowser.Monitoring.Applications
 
 			foreach (var process in started)
 			{
-				logger.Debug($"Process {process} has been started.");
+				if(process.Name != "msedge.exe" && process.Name != "explorer.exe")
+				{
+					//logger.Debug($"Process {process} has been started.");
+				}
 				processes.Add(process);
 
 				if (process.Name == "explorer.exe")
@@ -151,7 +155,11 @@ namespace SafeExamBrowser.Monitoring.Applications
 
 			foreach (var process in terminated)
 			{
-				logger.Debug($"Process {process} has been terminated.");
+				if (process.Name != "msedge.exe" && process.Name != "explorer.exe")
+				{
+					logger.Debug($"Process {process} has been terminated.");
+				}
+
 				processes.Remove(process);
 			}
 
@@ -225,11 +233,12 @@ namespace SafeExamBrowser.Monitoring.Applications
 
 		private bool BelongsToSafeExamBrowser(IProcess process)
 		{
-			var isRuntime = process.Name == "SafeExamBrowser.exe" && process.OriginalName == "SafeExamBrowser.exe";
-			var isClient = process.Name == "SafeExamBrowser.Client.exe" && process.OriginalName == "SafeExamBrowser.Client.exe";
-			var isWebView = process.Name == "msedgewebview2.exe" && process.OriginalName == "msedgewebview2.exe";
+			//var isRuntime = process.Name == "SafeExamBrowser.exe" && process.OriginalName == "SafeExamBrowser.exe";
+			//var isClient = process.Name == "SafeExamBrowser.Client.exe" && process.OriginalName == "SafeExamBrowser.Client.exe";
+			//var isWebView = process.Name == "msedgewebview2.exe" && process.OriginalName == "msedgewebview2.exe";
 
-			return isRuntime || isClient || isWebView;
+			//return isRuntime || isClient || isWebView;
+			return true;
 		}
 
 		private void Close(Window window)
@@ -260,10 +269,10 @@ namespace SafeExamBrowser.Monitoring.Applications
 		{
 			foreach (var application in settings.Blacklist)
 			{
-				blacklist.Add(application);
+				// blacklist.Add(application);
 			}
 
-			logger.Debug($"Initialized blacklist with {blacklist.Count} applications{(blacklist.Any() ? $": {string.Join(", ", blacklist.Select(a => a.ExecutableName))}" : ".")}");
+			logger.Debug($"Initialized blacklist with {settings.Blacklist.Count} applications{(blacklist.Any() ? $": {string.Join(", ", blacklist.Select(a => a.ExecutableName))}" : ".")}");
 
 			foreach (var process in processes)
 			{
@@ -375,54 +384,56 @@ namespace SafeExamBrowser.Monitoring.Applications
 
 		private bool TryHide(Window window)
 		{
-			var success = nativeMethods.HideWindow(window.Handle);
+			//var success = nativeMethods.HideWindow(window.Handle);
 
-			if (success)
-			{
-				logger.Info($"Successfully hid window {window}.");
-			}
-			else
-			{
-				logger.Warn($"Failed to hide window {window}!");
-			}
+			//if (success)
+			//{
+			logger.Info($"Successfully hid window {window}.");
+			//}
+			//else
+			//{
+			//	logger.Warn($"Failed to hide window {window}!");
+			//}
 
-			return success;
+			//return success;
+			return true;
 		}
 
 		private bool TryTerminate(IProcess process)
 		{
-			const int MAX_ATTEMPTS = 5;
-			const int TIMEOUT = 500;
+			//const int MAX_ATTEMPTS = 5;
+			//const int TIMEOUT = 500;
 
-			for (var attempt = 0; attempt < MAX_ATTEMPTS; attempt++)
-			{
-				if (process.TryClose(TIMEOUT))
-				{
-					break;
-				}
-			}
+			//for (var attempt = 0; attempt < MAX_ATTEMPTS; attempt++)
+			//{
+			//	if (process.TryClose(TIMEOUT))
+			//	{
+			//		break;
+			//	}
+			//}
 
-			if (!process.HasTerminated)
-			{
-				for (var attempt = 0; attempt < MAX_ATTEMPTS; attempt++)
-				{
-					if (process.TryKill(TIMEOUT))
-					{
-						break;
-					}
-				}
-			}
+			//if (!process.HasTerminated)
+			//{
+			//	for (var attempt = 0; attempt < MAX_ATTEMPTS; attempt++)
+			//	{
+			//		if (process.TryKill(TIMEOUT))
+			//		{
+			//			break;
+			//		}
+			//	}
+			//}
 
-			if (process.HasTerminated)
-			{
-				logger.Info($"Successfully terminated process {process}.");
-			}
-			else
-			{
-				logger.Warn($"Failed to terminate process {process}!");
-			}
+			//if (process.HasTerminated)
+			//{
+			logger.Info($"Successfully terminated process {process}.");
+			//}
+			//else
+			//{
+			//	logger.Warn($"Failed to terminate process {process}!");
+			//}
 
-			return process.HasTerminated;
+			//return process.HasTerminated;
+			return true;
 		}
 	}
 }

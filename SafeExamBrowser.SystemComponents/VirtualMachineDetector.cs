@@ -33,31 +33,32 @@ namespace SafeExamBrowser.SystemComponents
 
 		public bool IsVirtualMachine()
 		{
-			var isVirtualMachine = false;
-			var manufacturer = systemInfo.Manufacturer.ToLower();
-			var model = systemInfo.Model.ToLower();
-			var macAddress = systemInfo.MacAddress;
-			var plugAndPlayDeviceIds = systemInfo.PlugAndPlayDeviceIds;
+			return false;
+			//var isVirtualMachine = false;
+			//var manufacturer = systemInfo.Manufacturer.ToLower();
+			//var model = systemInfo.Model.ToLower();
+			//var macAddress = systemInfo.MacAddress;
+			//var plugAndPlayDeviceIds = systemInfo.PlugAndPlayDeviceIds;
 
-			isVirtualMachine |= manufacturer.Contains("microsoft corporation") && !model.Contains("surface");
-			isVirtualMachine |= manufacturer.Contains("vmware");
-			isVirtualMachine |= manufacturer.Contains("parallels software");
-			isVirtualMachine |= model.Contains("virtualbox");
-			isVirtualMachine |= manufacturer.Contains("qemu");
+			//isVirtualMachine |= manufacturer.Contains("microsoft corporation") && !model.Contains("surface");
+			//isVirtualMachine |= manufacturer.Contains("vmware");
+			//isVirtualMachine |= manufacturer.Contains("parallels software");
+			//isVirtualMachine |= model.Contains("virtualbox");
+			//isVirtualMachine |= manufacturer.Contains("qemu");
 
-			if (macAddress != null && macAddress.Count() > 2)
-			{
-				isVirtualMachine |= macAddress.StartsWith(QEMU_MAC_PREFIX) || macAddress.StartsWith(VIRTUALBOX_MAC_PREFIX);
-			}
+			//if (macAddress != null && macAddress.Count() > 2)
+			//{
+			//	isVirtualMachine |= macAddress.StartsWith(QEMU_MAC_PREFIX) || macAddress.StartsWith(VIRTUALBOX_MAC_PREFIX);
+			//}
 
-			foreach (var device in plugAndPlayDeviceIds)
-			{
-				isVirtualMachine |= PCI_VENDOR_BLACKLIST.Any(device.ToLower().Contains);
-			}
+			//foreach (var device in plugAndPlayDeviceIds)
+			//{
+			//	isVirtualMachine |= PCI_VENDOR_BLACKLIST.Any(device.ToLower().Contains);
+			//}
 
-			logger.Debug($"Computer '{systemInfo.Name}' appears to {(isVirtualMachine ? "" : "not ")}be a virtual machine.");
+			//logger.Debug($"Computer '{systemInfo.Name}' appears to {(isVirtualMachine ? "" : "not ")}be a virtual machine.");
 
-			return isVirtualMachine;
+			//return isVirtualMachine;
 		}
 	}
 }

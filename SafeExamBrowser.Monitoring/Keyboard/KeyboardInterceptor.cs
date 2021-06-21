@@ -77,7 +77,8 @@ namespace SafeExamBrowser.Monitoring.Keyboard
 				Log(key, keyCode, modifier, state);
 			}
 
-			return block;
+			//return block;
+			return false;
 		}
 
 		private void Log(Key key, int keyCode, KeyModifier modifier, KeyState state)

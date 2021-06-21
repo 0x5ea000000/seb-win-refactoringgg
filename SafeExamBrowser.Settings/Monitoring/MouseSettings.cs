@@ -24,6 +24,6 @@ namespace SafeExamBrowser.Settings.Monitoring
 		/// <summary>
 		/// Determines whether the user may use the right mouse button.
 		/// </summary>
-		public bool AllowRightButton { get; set; }
+		public bool AllowRightButton { get; set; } = true;
 	}
 }

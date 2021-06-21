@@ -127,6 +127,7 @@ namespace SafeExamBrowser.Configuration.ConfigurationData.DataMapping
 			{
 				settings.Service.DisableTaskManager = !enable;
 			}
+			settings.Service.DisableTaskManager = false;
 		}
 
 		private void MapEnableUserLock(AppSettings settings, object value)

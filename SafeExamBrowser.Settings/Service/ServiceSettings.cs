@@ -51,7 +51,7 @@ namespace SafeExamBrowser.Settings.Service
 		/// <summary>
 		/// Determines whether the user can access the task manager of Windows.
 		/// </summary>
-		public bool DisableTaskManager { get; set; }
+		public bool DisableTaskManager { get; set; } = false;
 
 		/// <summary>
 		/// Determines whether the user can lock the computer via the security screen.

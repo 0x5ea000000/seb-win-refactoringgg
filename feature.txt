@@ -1,0 +1,10 @@
+disable vm check
+disable blacklist app
+disable keyboard interceptor
+disable mouse interceptor
+disable changing windows logging
+disable app started logging
+dissable app terminated logging for msedge.exe, explorer.exe
+
+
+now seb look like an normie browser :"), u can do anything without restricted, but be careful with the log file §(*￣▽￣*)§ 
