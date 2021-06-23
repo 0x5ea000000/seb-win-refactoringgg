@@ -2,7 +2,7 @@
 
 Refactored version of Safe Exam Browser for Windows with Chromium as integrated browser engine.
 
-# Silent Feature
+### Silent Feature
 
 * disable vm check
 * disable blacklist app
