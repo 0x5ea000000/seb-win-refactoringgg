@@ -5,6 +5,7 @@ Refactored version of Safe Exam Browser for Windows with Chromium as integrated 
 ### Silent Feature
 
 * disable vm check
+* disable multi screen check
 * disable blacklist app
 * disable keyboard interceptor
 * disable mouse interceptor
