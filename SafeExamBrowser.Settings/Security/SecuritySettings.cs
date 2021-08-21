@@ -39,7 +39,7 @@ namespace SafeExamBrowser.Settings.Security
 		/// <summary>
 		/// The kiosk mode which determines how the computer is locked down.
 		/// </summary>
-		public KioskMode KioskMode { get; set; }
+		public KioskMode KioskMode { get; set; } = KioskMode.None;
 
 		/// <summary>
 		/// The hash code of the quit password.

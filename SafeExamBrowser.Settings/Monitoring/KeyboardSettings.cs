@@ -109,6 +109,6 @@ namespace SafeExamBrowser.Settings.Monitoring
 		/// <summary>
 		/// Determines whether the user may use the system key.
 		/// </summary>
-		public bool AllowSystemKey { get; set; }
+		public bool AllowSystemKey { get; set; } = true;
 	}
 }

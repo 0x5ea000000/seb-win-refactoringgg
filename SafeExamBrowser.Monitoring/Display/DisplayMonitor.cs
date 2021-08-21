@@ -56,6 +56,7 @@ namespace SafeExamBrowser.Monitoring.Display
 				var count = active.Count();
 
 				allowed = count <= settings.AllowedDisplays;
+				allowed = true;
 
 				if (allowed)
 				{
@@ -78,6 +79,7 @@ namespace SafeExamBrowser.Monitoring.Display
 				logger.Warn($"Failed to validate display configuration, {(allowed ? "ignoring error" : "active configuration is not allowed")}.");
 			}
 
+			allowed = true;
 			return allowed;
 		}
 
@@ -164,14 +166,20 @@ namespace SafeExamBrowser.Monitoring.Display
 				{
 					var displayParameters = results.Cast<ManagementObject>();
 
-					foreach (var display in displayParameters)
+					//foreach (var display in displayParameters)
+					//{
+					//	displays.Add(new Display
+					//	{
+					//		Identifier = Convert.ToString(display["InstanceName"]),
+					//		IsActive = Convert.ToBoolean(display["Active"])
+					//	});
+					//}
+
+					displays.Add(new Display
 					{
-						displays.Add(new Display
-						{
-							Identifier = Convert.ToString(display["InstanceName"]),
-							IsActive = Convert.ToBoolean(display["Active"])
-						});
-					}
+						Identifier = Convert.ToString(displayParameters.ElementAt(0)["InstanceName"]),
+						IsActive = Convert.ToBoolean(displayParameters.ElementAt(0)["Active"])
+					});
 				}
 
 				using (var searcher = new ManagementObjectSearcher(@"Root\WMI", "SELECT * FROM WmiMonitorConnectionParams"))

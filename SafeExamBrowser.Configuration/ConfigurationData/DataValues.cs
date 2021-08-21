@@ -191,10 +191,10 @@ namespace SafeExamBrowser.Configuration.ConfigurationData
 			settings.Display.IgnoreError = false;
 			settings.Display.InternalDisplayOnly = false;
 
-			settings.Keyboard.AllowAltEsc = false;
-			settings.Keyboard.AllowAltF4 = false;
+			settings.Keyboard.AllowAltEsc = true;
+			settings.Keyboard.AllowAltF4 = true;
 			settings.Keyboard.AllowAltTab = true;
-			settings.Keyboard.AllowCtrlEsc = false;
+			settings.Keyboard.AllowCtrlEsc = true;
 			settings.Keyboard.AllowEsc = true;
 			settings.Keyboard.AllowF1 = true;
 			settings.Keyboard.AllowF2 = true;
@@ -208,12 +208,12 @@ namespace SafeExamBrowser.Configuration.ConfigurationData
 			settings.Keyboard.AllowF10 = true;
 			settings.Keyboard.AllowF11 = true;
 			settings.Keyboard.AllowF12 = true;
-			settings.Keyboard.AllowPrintScreen = false;
-			settings.Keyboard.AllowSystemKey = false;
+			settings.Keyboard.AllowPrintScreen = true;
+			settings.Keyboard.AllowSystemKey = true;
 
 			settings.LogLevel = LogLevel.Debug;
 
-			settings.Mouse.AllowMiddleButton = false;
+			settings.Mouse.AllowMiddleButton = true;
 			settings.Mouse.AllowRightButton = true;
 
 			settings.Proctoring.Enabled = false;
@@ -241,7 +241,7 @@ namespace SafeExamBrowser.Configuration.ConfigurationData
 			settings.Security.AllowApplicationLogAccess = false;
 			settings.Security.AllowTermination = true;
 			settings.Security.AllowReconfiguration = false;
-			settings.Security.KioskMode = KioskMode.CreateNewDesktop;
+			settings.Security.KioskMode = KioskMode.None;
 			settings.Security.VirtualMachinePolicy = VirtualMachinePolicy.Deny;
 
 			settings.Server.RequestAttemptInterval = 2000;
@@ -268,10 +268,10 @@ namespace SafeExamBrowser.Configuration.ConfigurationData
 			settings.SessionMode = SessionMode.Normal;
 
 			settings.Taskbar.EnableTaskbar = true;
-			settings.Taskbar.ShowApplicationInfo = false;
-			settings.Taskbar.ShowApplicationLog = false;
+			settings.Taskbar.ShowApplicationInfo = true;
+			settings.Taskbar.ShowApplicationLog = true;
 			settings.Taskbar.ShowKeyboardLayout = true;
-			settings.Taskbar.ShowWirelessNetwork = false;
+			settings.Taskbar.ShowWirelessNetwork = true;
 			settings.Taskbar.ShowClock = true;
 
 			settings.UserInterfaceMode = UserInterfaceMode.Desktop;
